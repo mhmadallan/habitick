@@ -121,4 +121,38 @@ export async function fetchLastCompletion(taskId) {
   return data?.[0] || null; // { done_at } or null
 }
 
+// STUDY ITEMS (per-task learning log)
+export async function fetchStudyItems(taskId) {
+  await requireUser();
+  const { data, error } = await supabase
+    .from("study_items")
+    .select("*")
+    .eq("task_id", taskId)
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  return data;
+}
+
+export async function addStudyItem(taskId, item) {
+  const user = await requireUser();
+  const { data, error } = await supabase
+    .from("study_items")
+    .insert({
+      user_id: user.id,
+      task_id: taskId,
+      item_type: item.item_type,
+      item_text: item.item_text
+    })
+    .select("*")
+    .single();
+  if (error) throw error;
+  return data;
+}
+
+export async function deleteStudyItem(itemId) {
+  await requireUser();
+  const { error } = await supabase.from("study_items").delete().eq("id", itemId);
+  if (error) throw error;
+}
+
 
