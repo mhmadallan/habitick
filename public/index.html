@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Life Tasks - Today</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 min-h-screen">
+    <!-- Header / Auth Bar -->
+    <div class="max-w-5xl mx-auto px-4 pt-6">
+        <div class="bg-white rounded-xl shadow p-4 flex items-center justify-between">
+            <div class="text-sm">
+                <span class="text-slate-500">Signed in as:</span>
+                <span id="userEmail" class="font-semibold">—</span>
+            </div>
+            <div class="flex gap-2">
+                <button id="loginBtn" class="px-3 py-2 rounded-lg bg-blue-600 text-white text-sm">Sign in with
+                    Google</button>
+                <button id="logoutBtn" class="px-3 py-2 rounded-lg border text-sm hidden">Logout</button>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="mt-4 flex gap-4 text-sm">
+            <a class="font-semibold text-blue-600" href="index.html">Today</a>
+            <a class="text-slate-600" href="progress.html">Progress</a>
+            <a class="text-slate-600" href="encouragement.html">Encouragement</a>
+            <a class="text-slate-600" href="alive.html">Alive</a>
+
+        </div>
+    </div>
+
+    <main class="max-w-5xl mx-auto px-4 py-6">
+        <h1 class="text-2xl font-bold mb-4">Today</h1>
+
+        <!-- If not logged in -->
+        <div id="mustLoginBox" class="hidden bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-xl mb-6">
+            Please sign in with Google to see your tasks.
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Left: Due Tasks -->
+            <section class="bg-white rounded-xl shadow p-4">
+                <div class="flex items-center justify-between mb-3">
+                    <h2 class="font-semibold text-lg">Tasks due</h2>
+                    <button id="refreshBtn" class="text-sm px-3 py-2 rounded-lg border">Refresh</button>
+                </div>
+
+                <div id="dueList" class="space-y-2"></div>
+                <p id="emptyDue" class="text-slate-500 text-sm hidden">No tasks due right now.</p>
+            </section>
+
+            <!-- Right: Add/Edit Task -->
+            <section class="bg-white rounded-xl shadow p-4">
+                <h2 class="font-semibold text-lg mb-3">Add / Edit Task</h2>
+
+                <form id="taskForm" class="space-y-3 text-sm">
+                    <input type="hidden" id="taskId" />
+
+                    <div>
+                        <label class="block mb-1">Name</label>
+                        <input id="name" class="w-full border rounded-lg px-3 py-2" placeholder="Reading" required />
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block mb-1">Frequency</label>
+                            <select id="frequencyUnit" class="w-full border rounded-lg px-3 py-2">
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block mb-1">Minimum gap (days)</label>
+                            <input id="minGapDays" type="number" min="0" value="0"
+                                class="w-full border rounded-lg px-3 py-2" />
+                            <p class="text-xs text-slate-500 mt-1">Example: Haircut = 12 (can’t log again until 12 days
+                                pass)</p>
+                        </div>
+
+
+                        <div>
+                            <label class="block mb-1">Times per frequency</label>
+                            <input id="timesPerFrequency" type="number" min="1" value="1"
+                                class="w-full border rounded-lg px-3 py-2" />
+                            <p class="text-xs text-slate-500 mt-1">Example: 2 times weekly, 1 time monthly, etc.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block mb-1">Category</label>
+                        <input id="category" class="w-full border rounded-lg px-3 py-2"
+                            placeholder="Health, Study, Family..." />
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block mb-1">Points</label>
+                            <input id="points" type="number" min="0" value="0"
+                                class="w-full border rounded-lg px-3 py-2" />
+                        </div>
+
+                        <div>
+                            <label class="block mb-1">Estimated minutes</label>
+                            <input id="estimatedMinutes" type="number" min="0"
+                                class="w-full border rounded-lg px-3 py-2" placeholder="30" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block mb-1">Notes</label>
+                        <textarea id="notes" class="w-full border rounded-lg px-3 py-2" rows="2"
+                            placeholder="Optional details..."></textarea>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <input id="isActive" type="checkbox" checked />
+                        <label for="isActive">Active</label>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <button id="saveBtn" class="px-4 py-2 rounded-lg bg-blue-600 text-white" type="submit">
+                            Save
+                        </button>
+
+                        <button id="resetBtn" class="px-4 py-2 rounded-lg border" type="button">
+                            Reset
+                        </button>
+
+                        <button id="aiPointsBtn"
+                            class="px-4 py-2 rounded-lg border border-purple-600 text-purple-700 ml-auto" type="button">
+                            AI points
+                        </button>
+                    </div>
+
+                    <p id="aiReason" class="text-xs text-slate-600 hidden"></p>
+                </form>
+            </section>
+
+        </div>
+
+        <!-- All Tasks -->
+        <section class="bg-white rounded-xl shadow p-4 mt-6">
+            <h2 class="font-semibold text-lg mb-3">All tasks</h2>
+            <div id="allTasksList" class="space-y-2"></div>
+            <p id="emptyAll" class="text-slate-500 text-sm hidden">No tasks yet.</p>
+        </section>
+    </main>
+
+    <script type="module" src="ui-auth.js"></script>
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>

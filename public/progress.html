@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Life Tasks - Progress</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 min-h-screen">
+  <!-- Header / Auth Bar -->
+  <div class="max-w-5xl mx-auto px-4 pt-6">
+    <div class="bg-white rounded-xl shadow p-4 flex items-center justify-between">
+      <div class="text-sm">
+        <span class="text-slate-500">Signed in as:</span>
+        <span id="userEmail" class="font-semibold">—</span>
+      </div>
+      <div class="flex gap-2">
+        <button id="loginBtn" class="px-3 py-2 rounded-lg bg-blue-600 text-white text-sm">
+          Sign in with Google
+        </button>
+        <button id="logoutBtn" class="px-3 py-2 rounded-lg border text-sm hidden">
+          Logout
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="mt-4 flex gap-4 text-sm">
+      <a class="text-slate-600" href="index.html">Today</a>
+      <a class="font-semibold text-blue-600" href="progress.html">Progress</a>
+      <a class="text-slate-600" href="encouragement.html">Encouragement</a>
+    </div>
+  </div>
+
+  <main class="max-w-5xl mx-auto px-4 py-6">
+    <h1 class="text-2xl font-bold mb-4">Progress</h1>
+
+    <div id="mustLoginBox" class="hidden bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-xl mb-6">
+      Please sign in with Google to see your progress.
+    </div>
+
+    <!-- Points summary -->
+    <section class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-white rounded-xl shadow p-4">
+        <div class="text-sm text-slate-500">Points today</div>
+        <div id="pointsToday" class="text-2xl font-bold">—</div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-4">
+        <div class="text-sm text-slate-500">Points this week</div>
+        <div id="pointsWeek" class="text-2xl font-bold">—</div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-4">
+        <div class="text-sm text-slate-500">Points this month</div>
+        <div id="pointsMonth" class="text-2xl font-bold">—</div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-4">
+        <div class="text-sm text-slate-500">Weekly completion % (Daily + Weekly)</div>
+        <div id="weeklyPercent" class="text-2xl font-bold">—</div>
+        <div id="weeklyPercentMeta" class="text-xs text-slate-500 mt-1">—</div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-4">
+        <div class="text-sm text-slate-500">Top habit this week</div>
+        <div id="topHabitName" class="text-lg font-bold">—</div>
+        <div id="topHabitMeta" class="text-xs text-slate-500 mt-1">—</div>
+      </div>
+
+    </section>
+
+    <!-- Task progress list -->
+    <section class="bg-white rounded-xl shadow p-4">
+      <h2 class="font-semibold text-lg mb-3">This period per task</h2>
+
+      <div id="progressList" class="space-y-3"></div>
+
+      <p id="emptyProgress" class="text-slate-500 text-sm hidden">
+        No tasks yet.
+      </p>
+    </section>
+  </main>
+
+
+  <script type="module" src="ui-auth.js"></script>
+  <script type="module" src="progress.js"></script>
+</body>
+
+</html>

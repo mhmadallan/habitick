@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Life Tasks - Alive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-slate-100 min-h-screen">
+    <div class="max-w-5xl mx-auto px-4 pt-6">
+      <div class="bg-white rounded-xl shadow p-4 flex items-center justify-between">
+        <div class="text-sm">
+          <span class="text-slate-500">Signed in as:</span>
+          <span id="userEmail" class="font-semibold">—</span>
+        </div>
+        <div class="flex gap-2">
+          <button id="loginBtn" class="px-3 py-2 rounded-lg bg-blue-600 text-white text-sm">Sign in with Google</button>
+          <button id="logoutBtn" class="px-3 py-2 rounded-lg border text-sm hidden">Logout</button>
+        </div>
+      </div>
+
+      <div class="mt-4 flex gap-4 text-sm">
+        <a class="text-slate-600" href="index.html">Today</a>
+        <a class="font-semibold text-blue-600" href="alive.html">Alive</a>
+        <a class="text-slate-600" href="progress.html">Progress</a>
+        <a class="text-slate-600" href="encouragement.html">Encouragement</a>
+      </div>
+    </div>
+
+    <main class="max-w-5xl mx-auto px-4 py-6">
+      <h1 class="text-2xl font-bold mb-4">Alive (Late but still earn points)</h1>
+
+      <div id="mustLoginBox" class="hidden bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-xl mb-6">
+        Please sign in with Google to see your tasks.
+      </div>
+
+      <section class="bg-white rounded-xl shadow p-4">
+        <div id="aliveList" class="space-y-2"></div>
+        <p id="emptyAlive" class="text-slate-500 text-sm hidden">No late tasks right now.</p>
+      </section>
+    </main>
+
+    <script type="module" src="ui-auth.js"></script>
+    <script type="module" src="alive.js"></script>
+  </body>
+</html>

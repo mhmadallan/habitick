@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Life Tasks - Encouragement</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-slate-100 min-h-screen">
+    <div class="max-w-5xl mx-auto px-4 pt-6">
+      <div class="bg-white rounded-xl shadow p-4 flex items-center justify-between">
+        <div class="text-sm">
+          <span class="text-slate-500">Signed in as:</span>
+          <span id="userEmail" class="font-semibold">—</span>
+        </div>
+        <div class="flex gap-2">
+          <button id="loginBtn" class="px-3 py-2 rounded-lg bg-blue-600 text-white text-sm">Sign in with Google</button>
+          <button id="logoutBtn" class="px-3 py-2 rounded-lg border text-sm hidden">Logout</button>
+        </div>
+      </div>
+
+      <div class="mt-4 flex gap-4 text-sm">
+        <a class="text-slate-600" href="index.html">Today</a>
+        <a class="text-slate-600" href="progress.html">Progress</a>
+        <a class="font-semibold text-blue-600" href="encouragement.html">Encouragement</a>
+      </div>
+    </div>
+
+    <main class="max-w-5xl mx-auto px-4 py-6">
+      <h1 class="text-2xl font-bold mb-4">Encouragement</h1>
+      <p class="text-slate-600 text-sm">
+        Next we’ll build saving encouragement messages + AI encouragement.
+      </p>
+    </main>
+
+    <script type="module" src="ui-auth.js"></script>
+    <script type="module" src="encouragement.js"></script>
+  </body>
+</html>
