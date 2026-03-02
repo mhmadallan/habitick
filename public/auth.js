@@ -28,6 +28,13 @@ export async function signInWithGoogle() {
 });
 }
 
+export async function signUpWithEmail(email, password) {
+  return supabase.auth.signUp({
+    email,
+    password
+  });
+}
+
 /** Logs the user out */
 export async function signOut() {
   await supabase.auth.signOut();

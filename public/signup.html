@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="habitick-api-base" content="https://habitick.onrender.com" />
+    <title>Habitick - Sign up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-100 min-h-screen">
+    <main class="max-w-md mx-auto px-4 py-10">
+      <section class="bg-white rounded-xl shadow p-6 space-y-4">
+        <div>
+          <h1 class="text-2xl font-bold">Create account</h1>
+          <p class="text-sm text-slate-600">Sign up with email and password.</p>
+        </div>
+
+        <form id="signupForm" class="space-y-3">
+          <div>
+            <label class="block text-sm mb-1" for="email">Email</label>
+            <input id="email" type="email" class="w-full border rounded-lg px-3 py-2" required />
+          </div>
+
+          <div>
+            <label class="block text-sm mb-1" for="password">Password</label>
+            <input id="password" type="password" class="w-full border rounded-lg px-3 py-2" minlength="6" required />
+          </div>
+
+          <div>
+            <label class="block text-sm mb-1" for="confirmPassword">Confirm password</label>
+            <input id="confirmPassword" type="password" class="w-full border rounded-lg px-3 py-2" minlength="6" required />
+          </div>
+
+          <button id="submitBtn" type="submit" class="w-full px-4 py-2 rounded-lg bg-blue-600 text-white text-sm">
+            Create account
+          </button>
+        </form>
+
+        <p id="message" class="text-sm text-slate-600 hidden"></p>
+        <p id="error" class="text-sm text-red-600 hidden"></p>
+
+        <div class="pt-2 border-t text-sm flex items-center justify-between">
+          <a href="index.html" class="text-blue-600">Back to app</a>
+          <button id="googleBtn" class="px-3 py-2 rounded-lg border">Sign in with Google</button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="signup.js"></script>
+  </body>
+</html>

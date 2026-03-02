@@ -2,17 +2,20 @@ import { supabase, signInWithGoogle, signOut } from "./auth.js";
 
 const userEmailEl = document.getElementById("userEmail");
 const loginBtn = document.getElementById("loginBtn");
+const signupBtn = document.getElementById("signupBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 
 function setLoggedOut() {
   userEmailEl.textContent = "—";
   loginBtn.classList.remove("hidden");
+  signupBtn?.classList.remove("hidden");
   logoutBtn.classList.add("hidden");
 }
 
 function setLoggedIn(email) {
   userEmailEl.textContent = email;
   loginBtn.classList.add("hidden");
+  signupBtn?.classList.add("hidden");
   logoutBtn.classList.remove("hidden");
 }
 
@@ -31,6 +34,9 @@ async function initAuthUI() {
   });
 
   loginBtn?.addEventListener("click", signInWithGoogle);
+  signupBtn?.addEventListener("click", () => {
+    window.location.href = "signup.html";
+  });
   logoutBtn?.addEventListener("click", async () => {
   await signOut();
   window.location.href = "index.html";
