@@ -1,4 +1,4 @@
-import { supabase, signInWithGoogle, signOut } from "./auth.js";
+import { supabase, signOut } from "./auth.js";
 
 const userEmailEl = document.getElementById("userEmail");
 const loginBtn = document.getElementById("loginBtn");
@@ -33,7 +33,9 @@ async function initAuthUI() {
     else setLoggedOut();
   });
 
-  loginBtn?.addEventListener("click", signInWithGoogle);
+  loginBtn?.addEventListener("click", () => {
+    window.location.href = "signin.html";
+  });
   signupBtn?.addEventListener("click", () => {
     window.location.href = "signup.html";
   });

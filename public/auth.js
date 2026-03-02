@@ -35,6 +35,13 @@ export async function signUpWithEmail(email, password) {
   });
 }
 
+export async function signInWithEmail(email, password) {
+  return supabase.auth.signInWithPassword({
+    email,
+    password
+  });
+}
+
 /** Logs the user out */
 export async function signOut() {
   await supabase.auth.signOut();
