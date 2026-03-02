@@ -1,25 +1,75 @@
 # Habitick
 
-Habitick is an Express + static frontend app with Supabase auth/data and OpenAI-powered helper endpoints.
+Habitick uses a static frontend (`public/`) + Node/Express backend (`server.js`).
+You can deploy them separately with the same technologies:
 
-## Run locally
+- Backend on Render
+- Frontend on Netlify or GitHub Pages
+
+## Local development
+
+### 1) Run backend API
 
 ```bash
 npm install
 npm start
 ```
 
-Open `http://localhost:3000`.
+Backend runs on `http://localhost:3000`.
 
-## Publish on Render
+### 2) Run frontend static files
 
-1. Push this repo to GitHub (already done).
-2. In Render, click `New +` -> `Blueprint`.
-3. Select this repo (`mhmadallan/habitick`).
-4. Render will detect `render.yaml` and create a web service.
-5. In Render service settings, add environment variable:
-   - `OPENAI_API_KEY` = your real key
-6. Deploy.
+Use any static server for `public/`, for example:
+
+```bash
+python3 -m http.server 5173 --directory public
+```
+
+Open `http://localhost:5173`.
+By default on localhost, frontend API calls point to `http://localhost:3000`.
+
+## Backend deployment (Render)
+
+1. In Render, click `New +` -> `Blueprint` and select this repo.
+2. Render reads `render.yaml` and creates `habitick-backend`.
+3. In Render service environment variables, set:
+  - `OPENAI_API_KEY` = your real key
+  - `ALLOWED_ORIGINS` = comma-separated frontend URLs, for example:
+    - `https://mhmadallan.github.io/habitick,https://habitick.netlify.app`
+4. Deploy and copy the Render backend URL (example: `https://habitick.onrender.com`).
+
+## Frontend deployment option A (Netlify)
+
+1. This repo already includes `netlify.toml` with `publish = "public"`.
+2. Create a new Netlify site from this repo and deploy.
+3. Replace the placeholder backend URL in all frontend pages:
+
+```bash
+find public -name "*.html" -exec sed -i 's|https://habitick.onrender.com|https://YOUR-REAL-BACKEND.onrender.com|g' {} +
+```
+
+4. In Supabase Auth settings, add your Netlify URL to redirect URLs.
+
+## Frontend deployment option B (GitHub Pages)
+
+1. This repo already includes a workflow in `.github/workflows/deploy-pages.yml` that deploys `public/` on pushes to `main`.
+2. In GitHub repo settings, set Pages source to **GitHub Actions**.
+3. Replace the placeholder backend URL in all frontend pages:
+
+```bash
+find public -name "*.html" -exec sed -i 's|https://habitick.onrender.com|https://YOUR-REAL-BACKEND.onrender.com|g' {} +
+```
+
+4. In Supabase Auth settings, add your Pages URL (example: `https://mhmadallan.github.io/habitick/index.html`) to redirect URLs.
+
+## Notes on API base URL
+
+Frontend resolves backend URL in this order:
+
+1. `window.HABITICK_API_BASE_URL`
+2. `<meta name="habitick-api-base" ...>`
+3. `http://localhost:3000` on localhost
+4. Same-origin fallback when none is set
 
 ## Important security step
 

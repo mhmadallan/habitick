@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import path from "path";
-import { fileURLToPath } from "url";
+import cors from "cors";
 import OpenAI from "openai";
 
 dotenv.config();
@@ -9,17 +8,36 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-// Serve the frontend files from /public
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, "public")));
+const configuredOrigins = (process.env.ALLOWED_ORIGINS || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin) return callback(null, true);
+
+      if (configuredOrigins.length === 0) {
+        return callback(null, true);
+      }
+
+      if (configuredOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("CORS blocked for this origin"));
+    }
+  })
+);
+
+app.get("/health", (_req, res) => {
+  res.json({ ok: true });
 });
 
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const openai = process.env.OPENAI_API_KEY
+  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  : null;
 
 /**
  * POST /api/ai/points
@@ -27,6 +45,10 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
  */
 app.post("/api/ai/points", async (req, res) => {
   try {
+    if (!openai) {
+      return res.status(503).json({ error: "OPENAI_API_KEY is not configured" });
+    }
+
     const { name, frequencyUnit, timesPerFrequency, category, estimatedMinutes } = req.body;
 
     const prompt = `
@@ -59,6 +81,10 @@ Task:
  */
 app.post("/api/ai/encouragement", async (req, res) => {
   try {
+    if (!openai) {
+      return res.status(503).json({ error: "OPENAI_API_KEY is not configured" });
+    }
+
     const { progressSnapshot } = req.body;
 
     const prompt = `

@@ -33,7 +33,7 @@ async function initAuthUI() {
   loginBtn?.addEventListener("click", signInWithGoogle);
   logoutBtn?.addEventListener("click", async () => {
   await signOut();
-  window.location.href = "/index.html";
+  window.location.href = "index.html";
 });
 
 }

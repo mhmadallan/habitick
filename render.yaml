@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: habitick
+    name: habitick-backend
     env: node
     plan: free
     buildCommand: npm install
@@ -8,4 +8,6 @@ services:
     autoDeploy: true
     envVars:
       - key: OPENAI_API_KEY
+        sync: false
+      - key: ALLOWED_ORIGINS
         sync: false

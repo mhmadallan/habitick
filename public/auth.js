@@ -16,8 +16,13 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
  * After login, Google redirects back to your app.
  */
 export async function signInWithGoogle() {
+  const currentPath = window.location.pathname;
+  const basePath = currentPath.endsWith("/")
+    ? currentPath
+    : currentPath.slice(0, currentPath.lastIndexOf("/") + 1);
+
   await supabase.auth.signInWithOAuth({ provider: "google",  options: {
-      redirectTo: window.location.origin + "/index.html", // ensures it returns to same origin
+      redirectTo: `${window.location.origin}${basePath}index.html`,
       queryParams: { prompt: "select_account" }
     } 
 });

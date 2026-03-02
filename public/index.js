@@ -8,6 +8,7 @@ import {
   fetchCompletionDates,
   fetchLastCompletion,
 } from "./api.js";
+import { apiUrl } from "./config.js";
 
 // ---------- DOM ----------
 const mustLoginBox = document.getElementById("mustLoginBox");
@@ -376,7 +377,7 @@ aiPointsBtn?.addEventListener("click", async () => {
     aiPointsBtn.disabled = true;
     aiPointsBtn.textContent = "Thinking...";
 
-    const res = await fetch("/api/ai/points", {
+    const res = await fetch(apiUrl("/api/ai/points"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)

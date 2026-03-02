@@ -147,7 +147,7 @@ function renderProgress(items) {
     const card = document.createElement("div");
     card.className = "border rounded-xl p-3 bg-slate-50";
     card.style.cursor = "pointer";
-    card.onclick = () => (window.location.href = `/task.html?id=${item.id}`);
+    card.onclick = () => (window.location.href = `task.html?id=${item.id}`);
 
     const top = document.createElement("div");
     top.className = "flex items-start justify-between gap-3";
