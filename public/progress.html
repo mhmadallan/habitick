@@ -5,6 +5,11 @@
   <meta charset="utf-8" />
   <meta name="habitick-api-base" content="https://habitick.onrender.com" />
   <title>Life Tasks - Progress</title>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -13,14 +18,14 @@
   <div class="max-w-5xl mx-auto px-4 pt-6">
     <div class="bg-white dark:bg-slate-800 dark:text-white rounded-xl shadow p-4 flex items-center justify-between">
       <div class="text-sm">
-        <span class="text-slate-500">Signed in as:</span>
-        <span id="userEmail" class="font-semibold">—</span>
+        <span class="text-slate-500 dark:text-slate-400">Signed in as:</span>
+        <span id="userEmail" class="font-semibold dark:text-white">—</span>
       </div>
       <div class="flex gap-2">
         <button id="themeToggle" class="px-3 py-2 rounded-lg border dark:border-slate-600 text-lg">🌙</button>
                 <button id="loginBtn" class="px-3 py-2 rounded-lg bg-blue-600 text-white text-sm">Sign in</button>
-        <button id="signupBtn" class="px-3 py-2 rounded-lg border text-sm">Sign up</button>
-        <button id="logoutBtn" class="px-3 py-2 rounded-lg border text-sm hidden">
+        <button id="signupBtn" class="px-3 py-2 rounded-lg border text-sm dark:border-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700">Sign up</button>
+        <button id="logoutBtn" class="px-3 py-2 rounded-lg border text-sm hidden dark:border-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700">
           Logout
         </button>
       </div>
@@ -28,52 +33,52 @@
 
     <!-- Navigation -->
     <div class="mt-4 flex gap-4 text-sm">
-      <a class="text-slate-600" href="index.html">Today</a>
-      <a class="font-semibold text-blue-600" href="progress.html">Progress</a>
-      <a class="text-slate-600" href="encouragement.html">Encouragement</a>
+      <a class="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200" href="index.html">Today</a>
+      <a class="font-semibold text-blue-600 dark:text-blue-400" href="progress.html">Progress</a>
+      <a class="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200" href="encouragement.html">Encouragement</a>
     </div>
   </div>
 
   <main class="max-w-5xl mx-auto px-4 py-6">
-    <h1 class="text-2xl font-bold mb-4">Progress</h1>
+    <h1 class="text-2xl font-bold mb-4 dark:text-white">Progress</h1>
 
-    <div id="mustLoginBox" class="hidden bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-xl mb-6">
+    <div id="mustLoginBox" class="hidden bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 text-yellow-800 dark:text-yellow-200 p-4 rounded-xl mb-6">
       Please sign in with Google to see your progress.
     </div>
 
     <!-- Points summary -->
     <section class="grid md:grid-cols-3 gap-4 mb-6">
-      <div class="bg-white rounded-xl shadow p-4">
-        <div class="text-sm text-slate-500">Points today</div>
+      <div class="bg-white dark:bg-slate-800 dark:text-white rounded-xl shadow p-4">
+        <div class="text-sm text-slate-500 dark:text-slate-400">Points today</div>
         <div id="pointsToday" class="text-2xl font-bold">—</div>
       </div>
 
-      <div class="bg-white rounded-xl shadow p-4">
-        <div class="text-sm text-slate-500">Points this week</div>
+      <div class="bg-white dark:bg-slate-800 dark:text-white rounded-xl shadow p-4">
+        <div class="text-sm text-slate-500 dark:text-slate-400">Points this week</div>
         <div id="pointsWeek" class="text-2xl font-bold">—</div>
       </div>
 
-      <div class="bg-white rounded-xl shadow p-4">
-        <div class="text-sm text-slate-500">Points this month</div>
+      <div class="bg-white dark:bg-slate-800 dark:text-white rounded-xl shadow p-4">
+        <div class="text-sm text-slate-500 dark:text-slate-400">Points this month</div>
         <div id="pointsMonth" class="text-2xl font-bold">—</div>
       </div>
 
-      <div class="bg-white rounded-xl shadow p-4">
-        <div class="text-sm text-slate-500">Weekly completion % (Daily + Weekly)</div>
+      <div class="bg-white dark:bg-slate-800 dark:text-white rounded-xl shadow p-4">
+        <div class="text-sm text-slate-500 dark:text-slate-400">Weekly completion % (Daily + Weekly)</div>
         <div id="weeklyPercent" class="text-2xl font-bold">—</div>
-        <div id="weeklyPercentMeta" class="text-xs text-slate-500 mt-1">—</div>
+        <div id="weeklyPercentMeta" class="text-xs text-slate-500 dark:text-slate-400 mt-1">—</div>
       </div>
 
-      <div class="bg-white rounded-xl shadow p-4">
-        <div class="text-sm text-slate-500">Top habit this week</div>
+      <div class="bg-white dark:bg-slate-800 dark:text-white rounded-xl shadow p-4">
+        <div class="text-sm text-slate-500 dark:text-slate-400">Top habit this week</div>
         <div id="topHabitName" class="text-lg font-bold">—</div>
-        <div id="topHabitMeta" class="text-xs text-slate-500 mt-1">—</div>
+        <div id="topHabitMeta" class="text-xs text-slate-500 dark:text-slate-400 mt-1">—</div>
       </div>
 
     </section>
 
     <!-- Task progress list -->
-    <section class="bg-white rounded-xl shadow p-4">
+    <section class="bg-white dark:bg-slate-800 dark:text-white rounded-xl shadow p-4">
       <h2 class="font-semibold text-lg mb-3">This period per task</h2>
 
       <div id="progressList" class="space-y-3"></div>

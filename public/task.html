@@ -17,59 +17,59 @@
     <div class="max-w-3xl mx-auto px-4 py-6">
 
         <div class="mb-4">
-            <a href="progress.html" class="text-blue-600 text-sm">← Back to progress</a>
+            <a href="progress.html" class="text-blue-600 dark:text-blue-400 text-sm">← Back to progress</a>
         </div>
 
-        <div id="mustLoginBox" class="hidden bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-xl mb-4">
+        <div id="mustLoginBox" class="hidden bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 text-yellow-800 dark:text-yellow-200 p-4 rounded-xl mb-4">
             Please sign in.
         </div>
 
-        <section class="bg-white rounded-xl shadow p-4 space-y-2">
+        <section class="bg-white dark:bg-slate-800 dark:text-white rounded-xl shadow p-4 space-y-2">
             <h1 id="name" class="text-xl font-bold"></h1>
 
-            <div id="meta" class="text-sm text-slate-600"></div>
+            <div id="meta" class="text-sm text-slate-600 dark:text-slate-400"></div>
 
-            <div class="border-t pt-3">
+            <div class="border-t dark:border-slate-700 pt-3">
                 <h2 class="font-semibold">Current period</h2>
-                <div id="periodRange" class="text-sm text-slate-700"></div>
-                <div id="periodCount" class="text-sm text-slate-700 mt-1"></div>
+                <div id="periodRange" class="text-sm text-slate-700 dark:text-slate-400"></div>
+                <div id="periodCount" class="text-sm text-slate-700 dark:text-slate-400 mt-1"></div>
             </div>
 
-            <div class="border-t pt-3">
+            <div class="border-t dark:border-slate-700 pt-3">
                 <h2 class="font-semibold">Completions in this period</h2>
-                <ul id="completionDates" class="list-disc pl-5 text-sm text-slate-700 mt-2"></ul>
-                <p id="noCompletions" class="text-sm text-slate-500 mt-2 hidden">No completions in this period yet.</p>
+                <ul id="completionDates" class="list-disc pl-5 text-sm text-slate-700 dark:text-slate-400 mt-2"></ul>
+                <p id="noCompletions" class="text-sm text-slate-500 dark:text-slate-400 mt-2 hidden">No completions in this period yet.</p>
             </div>
 
             <div>
                 <h2 class="font-semibold mt-3">Notes</h2>
-                <p id="notes" class="text-sm text-slate-700 whitespace-pre-wrap"></p>
+                <p id="notes" class="text-sm text-slate-700 dark:text-slate-400 whitespace-pre-wrap"></p>
             </div>
 
-            <div id="studySection" class="border-t pt-3 hidden">
+            <div id="studySection" class="border-t dark:border-slate-700 pt-3 hidden">
                 <h2 class="font-semibold">Study log</h2>
-                <p class="text-sm text-slate-600 mt-1">Track what you finished learning for this study task.</p>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Track what you finished learning for this study task.</p>
 
                 <form id="studyForm" class="mt-3 space-y-2">
                     <div class="grid sm:grid-cols-3 gap-2">
-                        <select id="studyType" class="border rounded-lg px-3 py-2 text-sm">
+                        <select id="studyType" class="border dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm">
                             <option value="book">Book</option>
                             <option value="quran_verse">Quran verse</option>
                             <option value="german_word">German word</option>
                             <option value="other">Other</option>
                         </select>
-                        <input id="studyText" class="sm:col-span-2 border rounded-lg px-3 py-2 text-sm"
+                        <input id="studyText" class="sm:col-span-2 border dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm"
                             placeholder="Example: Surah Al-Mulk 1-5" />
                     </div>
                     <div>
-                        <button type="submit" class="px-3 py-2 rounded-lg bg-blue-600 text-white text-sm">Add to
+                        <button type="submit" class="px-3 py-2 rounded-lg bg-blue-600 text-white text-sm hover:bg-blue-700">Add to
                             list</button>
                     </div>
                 </form>
 
                 <ul id="studyItems" class="mt-3 space-y-2"></ul>
-                <p id="noStudyItems" class="text-sm text-slate-500 mt-2">No study items yet.</p>
-                <p id="studyError" class="text-sm text-red-600 mt-2 hidden"></p>
+                <p id="noStudyItems" class="text-sm text-slate-500 dark:text-slate-400 mt-2">No study items yet.</p>
+                <p id="studyError" class="text-sm text-red-600 dark:text-red-400 mt-2 hidden"></p>
             </div>
         </section>
 
