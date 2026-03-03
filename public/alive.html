@@ -4,18 +4,24 @@
     <meta charset="utf-8" />
     <meta name="habitick-api-base" content="https://habitick.onrender.com" />
     <title>Life Tasks - Alive</title>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-  <body class="bg-slate-100 min-h-screen">
+  <body class="bg-slate-100 dark:bg-slate-900 min-h-screen transition-colors">
     <div class="max-w-5xl mx-auto px-4 pt-6">
-      <div class="bg-white rounded-xl shadow p-4 flex items-center justify-between">
+      <div class="bg-white dark:bg-slate-800 dark:text-white rounded-xl shadow p-4 flex items-center justify-between">
         <div class="text-sm">
           <span class="text-slate-500">Signed in as:</span>
           <span id="userEmail" class="font-semibold">—</span>
         </div>
         <div class="flex gap-2">
-          <button id="loginBtn" class="px-3 py-2 rounded-lg bg-blue-600 text-white text-sm">Sign in</button>
+          <button id="themeToggle" class="px-3 py-2 rounded-lg border dark:border-slate-600 text-lg">🌙</button>
+                <button id="loginBtn" class="px-3 py-2 rounded-lg bg-blue-600 text-white text-sm">Sign in</button>
           <button id="signupBtn" class="px-3 py-2 rounded-lg border text-sm">Sign up</button>
           <button id="logoutBtn" class="px-3 py-2 rounded-lg border text-sm hidden">Logout</button>
         </div>
@@ -43,6 +49,7 @@
     </main>
 
     <script type="module" src="ui-auth.js"></script>
+    <script type="module" src="theme-utils.js"></script>
     <script type="module" src="alive.js"></script>
   </body>
 </html>
