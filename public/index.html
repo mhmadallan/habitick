@@ -7,10 +7,45 @@
     <title>Life Tasks - Today</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        // Initialize dark mode BEFORE Tailwind loads
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
         tailwind.config = {
             darkMode: 'class'
         }
     </script>
+    <style>
+      html.dark {
+        color-scheme: dark;
+      }
+      html.dark body {
+        background-color: #0f172a !important;
+        color: #e2e8f0 !important;
+      }
+      html.dark .bg-white {
+        background-color: #1e293b !important;
+      }
+      html.dark .dark\:bg-slate-800 {
+        background-color: #1e293b !important;
+      }
+      html.dark .text-slate-500 {
+        color: #94a3b8 !important;
+      }
+      html.dark .text-slate-600 {
+        color: #78716c !important;
+      }
+      html.dark .border {
+        border-color: #334155 !important;
+      }
+      html.dark input,
+      html.dark textarea,
+      html.dark select {
+        background-color: #334155 !important;
+        color: #e2e8f0 !important;
+        border-color: #475569 !important;
+      }
+    </style>
 </head>
 
 <body class="bg-slate-100 dark:bg-slate-900 min-h-screen transition-colors">

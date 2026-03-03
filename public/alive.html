@@ -6,6 +6,10 @@
     <title>Life Tasks - Alive</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        // Initialize dark mode BEFORE Tailwind loads
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
         tailwind.config = {
             darkMode: 'class'
         }
