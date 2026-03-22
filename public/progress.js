@@ -145,7 +145,7 @@ function renderProgress(items) {
     const done = Number(item.doneCount || 0);
 
     const card = document.createElement("div");
-    card.className = "border rounded-xl p-3 bg-slate-50";
+    card.className = "border dark:border-slate-600 rounded-xl p-3 bg-slate-50 dark:bg-slate-700";
     card.style.cursor = "pointer";
     card.onclick = () => (window.location.href = `task.html?id=${item.id}`);
 
@@ -193,10 +193,9 @@ const daysLeft = Math.max(0, Math.ceil(msLeft / (1000 * 60 * 60 * 24)));
 
 ends.textContent = `Period ends: ${endDate.toLocaleString()} · ${daysLeft} day(s) left`;
 
-card.appendChild(ends);
-
     card.appendChild(top);
     card.appendChild(count);
+    card.appendChild(ends);
     // card.appendChild(dates);
 
     progressList.appendChild(card);
