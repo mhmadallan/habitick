@@ -145,7 +145,7 @@ function renderProgress(items) {
     const done = Number(item.doneCount || 0);
 
     const card = document.createElement("div");
-    card.className = "border dark:border-slate-600 rounded-xl p-3 bg-slate-50 dark:bg-slate-700";
+    card.className = "border rounded-xl p-3 bg-white";
     card.style.cursor = "pointer";
     card.onclick = () => (window.location.href = `task.html?id=${item.id}`);
 
@@ -155,11 +155,11 @@ function renderProgress(items) {
     const left = document.createElement("div");
 
     const title = document.createElement("div");
-    title.className = "font-semibold";
+    title.className = "font-semibold text-slate-900";
     title.textContent = item.name;
 
     const meta = document.createElement("div");
-    meta.className = "text-xs text-slate-500";
+    meta.className = "text-xs text-slate-500 dark-meta";
     const cat = item.category ? ` · ${item.category}` : "";
     meta.textContent = `${item.frequency_unit}${cat} · target ${target} · points ${item.points} · 🔥 streak ${item.streak}`;
 
@@ -174,7 +174,7 @@ function renderProgress(items) {
     top.appendChild(badge);
 
     const count = document.createElement("div");
-    count.className = "text-sm mt-2";
+    count.className = "text-sm mt-2 text-slate-700";
     count.textContent = `Done this period: ${done}/${target}`;
 
    /* const dates = document.createElement("div");
@@ -185,6 +185,7 @@ function renderProgress(items) {
 */
 const ends = document.createElement("div");
 ends.className = "text-xs text-slate-600 mt-1";
+ends.className = "text-xs text-slate-500 mt-1";
 
 const endDate = new Date(item.periodEndISO);
 const now = new Date();

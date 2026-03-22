@@ -37,6 +37,10 @@ html.dark .text-slate-700 {
   color: #94a3b8;
 }
 
+html.dark .text-slate-900 {
+  color: #f1f5f9;
+}
+
 html.dark .bg-slate-100 {
   background-color: #0f172a;
 }
