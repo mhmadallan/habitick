@@ -2,11 +2,17 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import OpenAI from "openai";
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
+
+// Middleware
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 
 const configuredOrigins = (process.env.ALLOWED_ORIGINS || "")
   .split(",")
@@ -104,6 +110,11 @@ Write 2-4 sentences encouragement. No guilt.
     console.error(err);
     res.status(500).json({ error: "AI encouragement failed" });
   }
+});
+
+// SPA fallback: serve index.html for all non-API routes
+app.get("*", (_req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.listen(process.env.PORT || 3000, () => {

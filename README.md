@@ -6,6 +6,19 @@ You can deploy them separately with the same technologies:
 - Backend on Render
 - Frontend on Netlify or GitHub Pages
 
+## 🚀 Publishing to iOS & Android App Stores
+
+**New to publishing?** Start here: **[PUBLICATION_GUIDE.md](./PUBLICATION_GUIDE.md)** - Complete roadmap with all 9 guides you need
+
+**Quick links to publishing resources:**
+- [Capacitor Setup](./CAPACITOR_SETUP.md) - Development environment setup
+- [App Store Assets](./APPSTORE_ASSETS.md) - Metadata, screenshots, descriptions
+- [Privacy Policy](./PRIVACY_POLICY_TEMPLATE.md) - Required for app stores
+- [Certificates & Signing](./CERTIFICATES_SIGNING.md) - Code signing setup
+- [Testing Checklist](./TESTING_CHECKLIST.md) - Pre-submission testing
+- [Build & Release](./BUILD_AND_RELEASE.md) - Creating & submitting builds
+- [Quick Commands](./QUICK_COMMANDS.md) - Day-to-day development commands
+
 ## Local development
 
 ### 1) Run backend API
@@ -109,3 +122,63 @@ using (auth.uid() = user_id);
 ```
 
 After this, open a task with category `study` from the Progress page and use the new Study log section.
+
+## Mobile App (iOS & Android) with Capacitor
+
+Habitick can now be packaged as a native iOS and Android app using **Capacitor**.
+
+### Quick Start
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Add iOS and/or Android platform:
+   ```bash
+   npx cap add ios      # For iPhone/iPad
+   npx cap add android  # For Android phones
+   ```
+
+3. Open in Xcode or Android Studio:
+   ```bash
+   npm run mobile:ios      # Open Xcode
+   npm run mobile:android  # Open Android Studio
+   ```
+
+4. Run on device or emulator (see detailed setup guide below)
+
+### Documentation
+
+For detailed setup instructions, platform-specific requirements, and troubleshooting:
+
+- **[CAPACITOR_SETUP.md](./CAPACITOR_SETUP.md)** - Complete setup guide for iOS & Android
+- **[QUICK_COMMANDS.md](./QUICK_COMMANDS.md)** - Essential commands reference
+- **[MOBILE_ENV_CONFIG.md](./MOBILE_ENV_CONFIG.md)** - Environment & API configuration for mobile
+
+### What's Included
+
+- ✅ iOS and Android support via Capacitor
+- ✅ Splash screen and status bar plugins
+- ✅ Native app packaging from your existing web app
+- ✅ Reuse of all existing HTML/CSS/JavaScript code
+- ✅ Access to device APIs (camera, geolocation, notifications, etc.)
+
+### Requirements
+
+**iOS:** Mac with Xcode 14+  
+**Android:** Android Studio with SDK 30+  
+**Both:** Node.js 16+
+
+### Workflow During Development
+
+After making changes to files in `public/`:
+
+```bash
+npm run mobile:sync          # Sync code to platforms
+# Then rebuild in Xcode (⌘ + B) or Android Studio (Ctrl + B)
+```
+
+### Building for App Stores
+
+See [CAPACITOR_SETUP.md](./CAPACITOR_SETUP.md#building-for-app-stores) for iOS App Store and Google Play distribution instructions.
